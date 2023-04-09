@@ -57,7 +57,7 @@
             </p>
                 
             <div class="counter">
-                <button class="mr-2 cursor-pointer" (click)="increment(item)">+</button>
+                <button [disabled]="item.count == 0"  class="mr-2 cursor-pointer" (click)="increment(item)">+</button>
                 <button class="cursor-pointer" (click)="decrement(item)">-</button> 
             </div>
         </div>
