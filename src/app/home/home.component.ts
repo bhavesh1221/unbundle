@@ -10,7 +10,7 @@ export class HomeComponent implements OnInit {
   items: Array<IProductDetailTyoe> = [
       {
         id: 0,
-        img: '//prod1.webp',
+        img: 'assets/prod1.webp',
         name: 'Fabelle The Bars Quartet',
         price: 20,
         count: 8
