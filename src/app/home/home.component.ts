@@ -10,28 +10,28 @@ export class HomeComponent implements OnInit {
   items: Array<IProductDetailTyoe> = [
       {
         id: 0,
-        img: '/assets/prod1.webp',
+        img: '//prod1.webp',
         name: 'Fabelle The Bars Quartet',
         price: 20,
         count: 8
       },
       {
         id: 1,
-        img: '/assets/prod2.webp',
+        img: 'assets/prod2.webp',
         name: 'LuvIt Goodies Chocolates',
         price: 25,
         count: 8
       },    
       {
         id: 2,
-        img: '/assets/prod3.webp',
+        img: 'assets/prod3.webp',
         name: 'Cadbury Temptation',
         price: 50,
         count: 8
       },
       {
         id: 3,
-        img: '/assets/prod4.webp',
+        img: 'assets/prod4.webp',
         name: 'Cadbury Celebrations',
         price: 70,
         count: 8
