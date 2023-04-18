@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IProductDetailTyoe } from '../home/home.model'
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
@@ -7,42 +8,58 @@ import { IProductDetailTyoe } from '../home/home.model'
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  items: Array<IProductDetailTyoe> = [
-      {
-        id: 0,
-        img: 'assets/prod1.webp',
-        name: 'Fabelle The Bars Quartet',
-        price: 20,
-        count: 8
-      },
-      {
-        id: 1,
-        img: 'assets/prod2.webp',
-        name: 'LuvIt Goodies Chocolates',
-        price: 25,
-        count: 8
-      },    
-      {
-        id: 2,
-        img: 'assets/prod3.webp',
-        name: 'Cadbury Temptation',
-        price: 50,
-        count: 8
-      },
-      {
-        id: 3,
-        img: 'assets/prod4.webp',
-        name: 'Cadbury Celebrations',
-        price: 70,
-        count: 8
-      }
-    ]
+  navbarItems = ['Buy', 'Rent', 'Sell']
+  selectedLevel: any;
+  productsToDisplay:any = [];
   prodPrice = 0;
+  searchKey: string = "";
+  items:any = [];
   productArray:any = [];
-
-  constructor() { }
-
+  selectedIndex: any = null;
+  
+ 
+  constructor(private https: HttpClient) { }
+    
   ngOnInit(): void {
+    this.https.get('https://fakestoreapi.com/products').subscribe((data)=>{
+      this.items = data;
+      this.productsToDisplay = data;
+    })
+  }
+  setIndex(index: number) {
+    this.selectedIndex = index;
+  }
+  
+  selected(){
+    if(this.selectedLevel == 'all'){
+      this.items = this.productsToDisplay.filter((item:any)=>{
+        return item.price;
+      })
+    }
+
+   if(this.selectedLevel == 'price0'){
+    this.items = this.productsToDisplay.filter((item:any)=>{
+      return item.price > 0 && item.price < 100;
+    })
+   
+   }
+   if(this.selectedLevel == 'price1'){
+   this.items = this.productsToDisplay.filter((item:any)=>{
+      return item.price > 100 && item.price < 500;
+    })
+    
+   }
+   if(this.selectedLevel == 'price2'){
+   this.items = this.productsToDisplay.filter((item:any)=>{
+      return item.price > 500 && item.price < 1000;
+    })
+   
+   }
+    if(this.selectedLevel == 'price3'){
+     this.items = this.productsToDisplay.filter((item:any)=>{
+        return item.price > 1000 && item.price < 1500;
+      })
+    }
   }
 
   increment(item:IProductDetailTyoe){
